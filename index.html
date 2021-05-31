@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <title>Polyline on the Map</title>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" type="text/css" href="./heremap/demo.css" />
+    <link rel="stylesheet" type="text/css" href="./heremap/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./heremap/template.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+  </head>
+  <body id="markers-on-the-map">
+    <div class="page-header">
+        <h1>Polyline on the Map</h1>
+        <p>Display a map highlighting a region or area</p>
+    </div>
+    <p>Selezionare il numero dei due vertici di cui si vuole visualizzare il percorso che li collega calcolato con l'algoritmo A*</p>
+    <div class="vert-form">
+
+    </div>
+    <div>
+    <button type="button" onclick=calculateDistance()>Calcola</button>
+    <br><br>
+    </div>
+
+    <div id="map"></div>
+    
+    <script type="text/javascript" src='controller.js'></script>
+  </body>
+</html>
