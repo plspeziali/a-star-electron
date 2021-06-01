@@ -13,19 +13,22 @@ var vertices;
 var g = GraphCreator.createGraph('./astar/maps/cal.cnode','./astar/maps/cal.cedge');
 vertices = g.getVertices();
 let vertNum = vertices.length-1;
-$(".vert-form").append("<label for='vertA'>Primo vertice</label><br><input class='vertBox' type='number' value=11305 id='vertA' name='vertA' min='0' max='"+vertNum+"'><br><br>");
-$(".vert-form").append("<label for='vertB'>Secondo vertice</label><br><input class='vertBox' type='number' value=8723 id='vertB' name='vertB' min='0' max='"+vertNum+"'><br><br>");
+$("#vertAInput").append("<label for='vertA'>Primo Nodo</label><br><input class='vertBox' type='number' id='vertA' name='vertA' min='0' max='"+vertNum+"'><br><br>");
+$("#vertBInput").append("<label for='vertB'>Secondo Nodo</label><br><input class='vertBox' type='number' id='vertB' name='vertB' min='0' max='"+vertNum+"'><br><br>");
 
 $( ".vertBox" ).change(function() {
   map.removeObjects(map.getObjects());
   var vertA = $("#vertA").val();
   var vertB = $("#vertB").val();
   if(typeof(vertA) != "undefined"){
-    var vertA = $("#vertA").val();
+    $("#latA").text(vertices[vertA].y);
+    $("#lonA").text(vertices[vertA].x);
     var vertAMarker = new H.map.Marker({lat:vertices[vertA].y, lng:vertices[vertA].x});
     map.addObject(vertAMarker);
   }
   if(typeof(vertB) != "undefined"){
+    $("#latB").text(vertices[vertB].y);
+    $("#lonB").text(vertices[vertB].x);
     var vertBMarker = new H.map.Marker({lat:vertices[vertB].y, lng:vertices[vertB].x});
     map.addObject(vertBMarker);
   }

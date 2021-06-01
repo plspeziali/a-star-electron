@@ -49,9 +49,9 @@ module.exports = {
         totalPath.push(current);
         while(typeof(cameFrom[current]) !== "undefined"){
             current = cameFrom[current]
-            totalPath.unshift(current);
+            totalPath.push(current);
         }
-        return totalPath
+        return totalPath.reverse()
     },
 
     minKey(map, list){
