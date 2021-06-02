@@ -25,7 +25,7 @@ module.exports = class PriorityQueue {
 
     insert(key){  //inserisce una nuova chiave nella coda e sistema l'array così che sia un min heap
         this.list.push(key);
-        var i = this.list.length;
+        var i = this.list.length-1;
         while(i>0 && this.fScore[this.list[this.parent(i)]] > this.fScore[this.list[i]]){
             [this.list[i],this.list[this.parent(i)]] = [this.list[this.parent(i)], this.list[i]];
             i = this.parent(i);
@@ -39,6 +39,13 @@ module.exports = class PriorityQueue {
             this.list.pop();
             this.minHeapify(0);
             return min;
+        }
+    }
+
+    decreaseKey(i){
+        while(i>0 && this.fScore[this.list[this.parent(i)]] > this.fScore[this.list[i]]){
+            [this.list[i],this.list[this.parent(i)]] = [this.list[this.parent(i)], this.list[i]];
+            i = this.parent(i);
         }
     }
 
@@ -60,6 +67,10 @@ module.exports = class PriorityQueue {
 
     includes(el){
         return this.list.includes(el);
+    }
+
+    indexOf(el){
+        return this.list.indexOf(el);
     }
     
 };
