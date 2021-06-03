@@ -1,33 +1,29 @@
 module.exports = class Graph {
-    // defining vertex array and
-    // adjacent list
+    // Si definiscono per il grafo la lista di adiacenza
+    // e l'array dei vertici (ridondanza sulla memoria che riduce la ciomplessità)
     constructor() {
-        this.numVertices = 0;
         this.adjList = new Map();
+        this.verticesList = new Array();
     }
   
-    // functions to be implemented
+   
   
-    // add vertex to the graph
+    //aggiunge i vertici
     addVertex(v){
-        // initialize the adjacent list with a
-        // null array
+        // La lista di adiacenza contiene la coppia nodo-lista archi che partono da quel vertice (qua vuota)
         this.adjList.set(v, []);
-        this.numVertices++;
+        this.verticesList.push(v);
     }
 
     addEdge(v, w, c){
-        // get the list for vertex v and put the
-        // vertex w denoting edge between v and w
+        // Associamo a ogni vertice il vicino e il costo per arrivarci, che nel nostro caso è 
+        // un dato presente nel file .cedge e rapprensenta la distanza effettiva tra i due vertici
         this.adjList.get(v).push({vertex: w, cost: c});
-    
-        // Since graph is undirected,
-        // add an edge from w to v also
         this.adjList.get(w).push({vertex: v, cost: c});
     }
 
+
     getVertices(){
-        this.verticesList = Array.from(this.adjList.keys());
         return this.verticesList;
     }
 
@@ -35,28 +31,15 @@ module.exports = class Graph {
         return this.adjList.get(this.verticesList[id]);
     }
 
-    // Prints the vertex and adjacency list
+    // Stampa il grafo
     printGraph(){
-        // get all the vertices
         var get_keys = this.adjList.keys();
-    
-        // iterate over the vertices
         for (var i of get_keys) {
-            // great the corresponding adjacency list
-            // for the vertex
             var get_values = this.adjList.get(i);
             var conc = "";
-    
-            // iterate over the adjacency list
-            // concatenate the values into a string
             for (var j of get_values)
                 conc += j.vertex.id+"["+j.cost+"]" + " ";
-    
-            // print the vertex and its adjacency list
             console.log(i.id + " -> " + conc);
         }
     }
-  
-    // bfs(v)
-    // dfs(v)
 };

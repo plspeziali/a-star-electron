@@ -52,18 +52,5 @@ module.exports = {
             totalPath.push(current);
         }
         return totalPath.reverse()
-    },
-
-    minKey(map, list){
-        var minKey;
-        var minValue = Infinity;
-        for(let key of list){
-            let value = map[key];
-            if(value < minValue){
-                minValue = value;
-                minKey = key;
-            }
-        }
-        return minKey;
     }
 }

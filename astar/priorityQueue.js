@@ -1,6 +1,6 @@
-// User defined class
-// to store element and its priority
+// Questa classe implementa una coda di priorità che ci serve per ordinare openSet
 module.exports = class PriorityQueue {
+    // fScore viene passato per riferimento in modo da avere i suoi valori per l'ordinamento sempre aggiornati
     constructor(fScore){
         this.list = new Array();
         this.fScore = fScore;
@@ -10,20 +10,22 @@ module.exports = class PriorityQueue {
         let l = this.left(i);
         let r = this.right(i);
         var min = i;
-        // confronto i due valori fScore dei due veritici presi da list
+        // Confronto i due valori fScore dei due vertici presi da list
         if (l<this.list.length && this.fScore[this.list[l]] < this.fScore[this.list[i]]){
             min = l;
         }
         if (r<this.list.length && this.fScore[this.list[r]] < this.fScore[this.list[min]]){
             min = r;
         }
-        if(min != i){
+        if(min != i){ 
             [this.list[i], this.list[min]] = [this.list[min], this.list[i]];
+            //minHeapify ristabilisce la struttura del minHeap ricorsivamente
             this.minHeapify(min);
         }
     }
 
-    insert(key){  //inserisce una nuova chiave nella coda e sistema l'array così che sia un min heap
+    // Inserisce una nuova chiave nella coda e ordina l'array affinché sia un min heap
+    insert(key){  
         this.list.push(key);
         var i = this.list.length-1;
         while(i>0 && this.fScore[this.list[this.parent(i)]] > this.fScore[this.list[i]]){
@@ -32,6 +34,7 @@ module.exports = class PriorityQueue {
         }
     }
 
+    // Permette di estrarre il valore corretto di openSet semplicemente prendendo il primo elemento dell'array
     extractMin(){
         if (this.list.length != 0){
             let min = this.list[0];
@@ -42,6 +45,7 @@ module.exports = class PriorityQueue {
         }
     }
 
+    // Permette di andare a riordinare correttamente il minHeap se c'è un elemento di openSet il cui valore di fScore è cambiato
     decreaseKey(i){
         while(i>0 && this.fScore[this.list[this.parent(i)]] > this.fScore[this.list[i]]){
             [this.list[i],this.list[this.parent(i)]] = [this.list[this.parent(i)], this.list[i]];
