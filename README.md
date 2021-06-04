@@ -6,7 +6,7 @@
  - Java (Opzionale per aggiungere nuove  mappe)
 
 ## Utilizzo dell'applicazione
-Aprendo il terminale nella cartella principale e digitando `npm start` avvierete l'applicazione che, tramite il framework Electron, mostrerà l'interfaccia per poter operare sui grafi.
+Aprendo il terminale nella cartella principale e digitando `npm install` installerete le dipendenze necessarie all'avvio dell'applicativo e con `npm start` avvierete l'applicazione che, tramite il framework Electron, mostrerà l'interfaccia per poter operare sui grafi.
 In basso è presente una casella per inserire il nome dei due file con estensione `.cnode` e `.cedge` che conterranno, rispettivamente, i nodi e gli archi del grafo con longitudine e latitudine geospaziali. Di default si visualizzerà quello corrispondente alle strade californiane, nella cartella `astar/maps` sono però presenti altri file da poter testare.
 Con le due caselle di input è possibile selezionare gli indici dei due nodi per cui si desidera visualizzare la strada migliore. Durante la scelta sarà possibile visualizzare nel paragrafo sottostante le coordinate dei nodi scelti. Una volta presi i due nodi, premendo il tasto **Calcola** sarà possibile visualizzare a schermo il percorso.
  
