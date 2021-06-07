@@ -13,4 +13,12 @@ module.exports = class Vertex{
     heuristic(v){
         return Math.hypot(Math.abs(this.x - v.x), Math.abs(this.y - v.y));
     }
+
+    heuristicManhattan(v){
+        return (Math.abs(this.x - v.x) + Math.abs(this.y - v.y));
+    }
+
+    heuristicRandom(v){
+        return Math.floor(Math.random() * 97886655630);
+    }
 }

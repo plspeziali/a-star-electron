@@ -3,8 +3,8 @@
  */
 
 const electron = require('electron');
-const GraphCreator = require('./astar/graphCreator');
-const Astar = require('./astar/astarPQDC');
+const GraphCreator = require(__dirname+'\\astar\\graphCreator');
+const Astar = require(__dirname+'\\astar\\astarPQDC');
 var vertices;
 var g;
 var map;
@@ -29,7 +29,7 @@ function createGraph(){
   }
   
   // Creiamo Grafo e lista dei vertici con GraphCreator
-  [g, vertices] = GraphCreator.createGraph('./astar/maps/'+filename+'.cnode','./astar/maps/'+filename+'.cedge');
+  [g, vertices] = GraphCreator.createGraph(__dirname+'\\astar\\maps\\'+filename+'.cnode',__dirname+'\\astar\\maps\\'+filename+'.cedge');
   let vertNum = vertices.length-1;
   $("#vertAInput").append("<label for='vertA'>Primo Nodo</label><br><input class='vertBox' type='number' id='vertA' name='vertA' min='0' max='"+vertNum+"'><br><br>");
   $("#vertBInput").append("<label for='vertB'>Secondo Nodo</label><br><input class='vertBox' type='number' id='vertB' name='vertB' min='0' max='"+vertNum+"'><br><br>");
