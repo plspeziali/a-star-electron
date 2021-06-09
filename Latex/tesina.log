@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.4.19)  7 JUN 2021 22:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.4.19)  9 JUN 2021 23:05
 entering extended mode
 **d:/Progetti/a_starGUI/Latex/tesina.tex
 (d:/Progetti/a_starGUI/Latex/tesina.tex
@@ -347,29 +347,84 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
- (d:/Progetti\a_starGUI\Latex\tesina.aux)
+ (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bookmark.sty
+Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
+ (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bkm-pdftex.def
+File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
+\BKM@id=\count297
+)) (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/algorithm2e\algorithm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count298
+ (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip72
+ (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count299
+) (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+) (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/relsize\relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip73
+\skiplinenumber=\skip74
+\skiprule=\skip75
+\skiphlne=\skip76
+\skiptext=\skip77
+\skiplength=\skip78
+\algomargin=\skip79
+\skipalgocfslide=\skip80
+\algowidth=\dimen191
+\inoutsize=\dimen192
+\inoutindent=\dimen193
+\interspacetitleruled=\dimen194
+\interspacealgoruled=\dimen195
+\interspacetitleboxruled=\dimen196
+\algocf@ruledwidth=\skip81
+\algocf@inoutbox=\box59
+\algocf@inputbox=\box60
+\AlCapSkip=\skip82
+\AlCapHSkip=\skip83
+\algoskipindent=\skip84
+\algocf@nlbox=\box61
+\algocf@hangingbox=\box62
+\algocf@untilbox=\box63
+\algocf@skipuntil=\skip85
+\algocf@capbox=\box64
+\algocf@lcaptionbox=\skip86
+\algoheightruledefault=\skip87
+\algoheightrule=\skip88
+\algotitleheightruledefault=\skip89
+\algotitleheightrule=\skip90
+\c@algocfline=\count300
+\c@algocfproc=\count301
+\c@algocf=\count302
+\algocf@algoframe=\box65
+\algocf@algobox=\box66
+) (d:/Progetti\a_starGUI\Latex\tesina.aux)
 \openout1 = `tesina.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Info: Redefining \it@ocap on input line 43.
-LaTeX Info: Redefining \it@ccap on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Info: Redefining \it@ocap on input line 45.
+LaTeX Info: Redefining \it@ccap on input line 45.
 
 
 File italian.ldf warning: 
@@ -377,7 +432,7 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 43.
+italian.ldf    on input line 45.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -415,22 +470,22 @@ italian.ldf    on input line 43.
 
 (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count297
-\scratchdimen=\dimen191
-\scratchbox=\box59
-\nofMPsegments=\count298
-\nofMParguments=\count299
+\scratchcounter=\count303
+\scratchdimen=\dimen197
+\scratchbox=\box67
+\nofMPsegments=\count304
+\nofMParguments=\count305
 \everyMPshowfont=\toks26
-\MPscratchCnt=\count300
-\MPscratchDim=\dimen192
-\MPnumerator=\count301
-\makeMPintoPDFobject=\count302
+\MPscratchCnt=\count306
+\MPscratchDim=\dimen198
+\MPnumerator=\count307
+\makeMPintoPDFobject=\count308
 \everyMPtoPDFconversion=\toks27
 ) (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 )
-Package hyperref Info: Link coloring OFF on input line 43.
+Package hyperref Info: Link coloring OFF on input line 45.
  (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
@@ -438,15 +493,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (C:\Users\Paolo\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count303
+\c@section@level=\count309
 )
-LaTeX Info: Redefining \ref on input line 43.
-LaTeX Info: Redefining \pageref on input line 43.
-LaTeX Info: Redefining \nameref on input line 43.
- (d:/Progetti\a_starGUI\Latex\tesina.out) (d:/Progetti\a_starGUI\Latex\tesina.out)
-\@outlinefile=\write3
-\openout3 = `tesina.out'.
-
+LaTeX Info: Redefining \ref on input line 45.
+LaTeX Info: Redefining \pageref on input line 45.
+LaTeX Info: Redefining \nameref on input line 45.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
@@ -455,8 +506,8 @@ Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
  ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 43.
-\c@lstlisting=\count304
+LaTeX Info: Redefining \selectfont on input line 45.
+\c@lstlisting=\count310
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -489,17 +540,17 @@ LaTeX Info: Redefining \selectfont on input line 43.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<img//logo-unipg.jpg, id=7, 1204.5pt x 948.54375pt>
+<img//logo-unipg.jpg, id=3, 1204.5pt x 948.54375pt>
 File: img//logo-unipg.jpg Graphic file (type jpg)
 <use img//logo-unipg.jpg>
-Package pdftex.def Info: img//logo-unipg.jpg  used on input line 54.
+Package pdftex.def Info: img//logo-unipg.jpg  used on input line 56.
 (pdftex.def)             Requested size: 135.89174pt x 107.00327pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 73.
+(Font)              <14.4> on input line 75.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 73.
+(Font)              <7> on input line 75.
 
-Overfull \hbox (3.25853pt too wide) in paragraph at lines 73--77
+Overfull \hbox (3.25853pt too wide) in paragraph at lines 75--79
  [][] 
  []
 
@@ -507,52 +558,72 @@ Overfull \hbox (3.25853pt too wide) in paragraph at lines 73--77
 
 
 {C:/Users/Paolo/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <d:/Progetti/a_starGUI/Latex/img//logo-unipg.jpg>] (d:/Progetti\a_starGUI\Latex\tesina.toc)
-\tf@toc=\write4
-\openout4 = `tesina.toc'.
+\tf@toc=\write3
+\openout3 = `tesina.toc'.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.97 \chapter
+l.99 \chapter
              {Problema Affrontato} [1
 
 
 ]
 Capitolo 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--103
+Underfull \hbox (badness 10000) in paragraph at lines 102--105
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 108.
+(Font)              <12> on input line 110.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 108.
+(Font)              <8> on input line 110.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 108.
+(Font)              <6> on input line 110.
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 
  []
 
 [2
 
-] [3] (d:/Progetti\a_starGUI\Latex\tesina.aux)
-Package rerunfilecheck Info: File `tesina.out' has not changed.
-(rerunfilecheck)             Checksum: 08BB058DF8688868969D6F152D49A17A;141.
- ) 
+] [3]
+Capitolo 2.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\\' on input line 116.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--123
+
+ []
+
+[4
+
+]
+Overfull \hbox (0.52948pt too wide) in paragraph at lines 127--128
+[]\OT1/cmr/m/n/12 Per im-ple-men-ta-re l'al-go-rit-mo so-no sta-te uti-liz-za-te prin-ci-pal-men-te quat-tro strut-
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 173--175
+
+ []
+
+[6] [7] (d:/Progetti\a_starGUI\Latex\tesina.aux) ) 
 Here is how much of TeX's memory you used:
- 13007 strings out of 479334
- 201725 string characters out of 2857084
- 636314 words of memory out of 3000000
- 30259 multiletter control sequences out of 15000+200000
- 409862 words of font info for 48 fonts, out of 3000000 for 9000
+ 14265 strings out of 479334
+ 222069 string characters out of 2857084
+ 649707 words of memory out of 3000000
+ 31491 multiletter control sequences out of 15000+200000
+ 410199 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,7n,77p,781b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on d:/Progetti\a_starGUI\Latex\tesina.pdf (4 pages, 207321 bytes).
+ 71i,18n,77p,798b,457s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Paolo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Paolo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on d:/Progetti\a_starGUI\Latex\tesina.pdf (8 pages, 232133 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
- 14 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 92 PDF objects out of 1000 (max. 8388607)
+ 13 named destinations out of 1000 (max. 500000)
+ 22 words of extra memory for PDF output out of 10000 (max. 10000000)
 

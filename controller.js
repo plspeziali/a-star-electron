@@ -80,7 +80,14 @@ function calculateDistance(){
   var vertB = $("#vertB").val();
   if(typeof(vertA) != "undefined" && typeof(vertB) != "undefined" && vertA != vertB){
     // Viene calcolato il cammino migliore
-    let route = Astar.aStar(vertices[vertA],vertices[vertB],g);
+    var start = Date.now();
+    let [route, N] = Astar.aStar(vertices[vertA],vertices[vertB],g);
+    var millis = Date.now() - start;
+    var bf = Math.pow(N, 1/route.length);
+    console.log(`N = ${N}`);
+    console.log(`d = ${route.length}`);
+    console.log(`branching factor = ${bf}`);
+    console.log(`millis = ${millis}`);
     // Creiamo la polilinea i cui punti sono i nodi del cammino e la aggiungiamo alla mappa
     var lineString = new H.geo.LineString();
     for(el of route){
