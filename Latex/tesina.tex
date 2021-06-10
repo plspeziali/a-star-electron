@@ -115,31 +115,31 @@ Dijkstra è sicuramente migliore per problemi di pathfinding in quanto viene tro
 
 \chapter{Algoritmi implementati e\\strutture dati realizzate}
 
-L’algoritmo di A* vero e proprio è stato inserito in un modulo NodeJS da cui poter richiamare il metodo \(astar(start, goal, graph)\), il quale prende come parametri due oggetti di classe Vertex start e goal e un oggetto di classe Graph.
+L'algoritmo di A* vero e proprio è stato inserito in un modulo NodeJS da cui poter richiamare il metodo \(astar(start, goal, graph)\), il quale prende come parametri due oggetti di classe Vertex start e goal e un oggetto di classe Graph.
 
 
-Le due classi appena citate sono state realizzate come semplici implementazioni di questi concetti (vertice e grafo), Graph avente una lista di adiacenza e i metodi per gestirla e Vertex avente degli attributi per l’id del nodo e le coordinate x e y e il metodo per il calcolo della funzione euristica che permette di calcolare la distanza euclidea tra il vertice su cui viene chiamato tale metodo e un altro passato per riferimento.
+Le due classi appena citate sono state realizzate come semplici implementazioni di questi concetti (vertice e grafo), Graph avente una lista di adiacenza e i metodi per gestirla e Vertex avente degli attributi per l'id del nodo e le coordinate x e y e il metodo per il calcolo della funzione euristica che permette di calcolare la distanza euclidea tra il vertice su cui viene chiamato tale metodo e un altro passato per riferimento.
 \\
 
 Ad ogni iterazione del ciclo dominante della nostra funzione \(astar\), per ogni vertice preso in esame, si decide quale arco attraversare sulla base del costo di esso e della stima formulata in vista del raggiungimento di quel determinato goal.
-Viene in particolare scelto quel nodo che minimizza il valore fScore f(n) tale che\[f(n) = g(n) + h(n)\]dove n è uno dei vertici vicini a quello che è stato elaborato fino a quel momento, g(n), anche detto gScore, rappresenta il costo del percorso dal nodo di start al nodo n e h(n) è invece l’euristica ammissibile che stima il costo minore sulla sola base del raggiungimento del goal (calcolata tramite il metodo della classe Vertex sopracitato). Si esce dal ciclo dominante una volta che è stato raggiunto il goal e, in seguito, viene ricostruito il percorso andando a ritroso, partendo dal goal e tenendo traccia per ogni nodo del suo predecessore, finché esso non sarà il nodo di start. 
+Viene in particolare scelto quel nodo che minimizza il valore fScore f(n) tale che\[f(n) = g(n) + h(n)\]dove n è uno dei vertici vicini a quello che è stato elaborato fino a quel momento, g(n), anche detto gScore, rappresenta il costo del percorso dal nodo di start al nodo n e h(n) è invece l'euristica ammissibile che stima il costo minore sulla sola base del raggiungimento del goal (calcolata tramite il metodo della classe Vertex sopracitato). Si esce dal ciclo dominante una volta che è stato raggiunto il goal e, in seguito, viene ricostruito il percorso andando a ritroso, partendo dal goal e tenendo traccia per ogni nodo del suo predecessore, finché esso non sarà il nodo di start. 
 \newpage
 Per implementare l'algoritmo sono state utilizzate principalmente quattro strutture dati:
 \begin{itemize}
-	\item \textbf{openSet}: l’insieme dei vertici che sono stati scoperti, e dei quali ancora occorre scoprire i vicini, e dei vertici già analizzati in precedenza per cui si tenta però di trovare un percorso di costo minore (eventualità rara se si utilizza una funzione euristica consistente come nel nostro caso); %\footnote[1]{\(h(x) ≤ d(x, y) + h(y)\) per ogni arco (x, y) del grafo dove d denota la lunghezza dell'arco}
-	\item \textbf{cameFrom}: l’insieme dei vertici candidati per essere inclusi nel percorso finale associati al nodo da cui si proviene per arrivarci;
+	\item \textbf{openSet}: l'insieme dei vertici che sono stati scoperti, e dei quali ancora occorre scoprire i vicini, e dei vertici già analizzati in precedenza per cui si tenta però di trovare un percorso di costo minore (eventualità rara se si utilizza una funzione euristica consistente come nel nostro caso); %\footnote[1]{\(h(x) ≤ d(x, y) + h(y)\) per ogni arco (x, y) del grafo dove d denota la lunghezza dell'arco}
+	\item \textbf{cameFrom}: l'insieme dei vertici candidati per essere inclusi nel percorso finale associati al nodo da cui si proviene per arrivarci;
 	\item \textbf{gScore}: contiene tutti i vertici con associato il percorso più economico conosciuto fino a quel momento per arrivare ad esso a partire dal vertice di start;
 	\item \textbf{fScore}:  presenta tutti i vertici con associato il minimo valore di f(n), ciò rappresenta il costo del percorso stimato più breve fino a quel momento per arrivare al goal passando attraverso il nodo n. 
 \end{itemize}
 
 Come primo passo abbiamo inizializzato tutti i gScore ed fScore con il valore Infinity (confrontabile con altri tipi di dato) ed openSet contenente solo il nodo di start.
 
-Per partire con l'analisi dei vertici si entra in un ciclo che si conclude solamente o quando estraiamo il goal da openSet o quando sempre openSet risulta vuoto. Infatti, tra i vertici contenuti in questa struttura dati, prendiamo all’inizio di ogni ciclo quello con il valore di fScore minimo in quel momento e lo rimuoviamo.
+Per partire con l'analisi dei vertici si entra in un ciclo che si conclude solamente o quando estraiamo il goal da openSet o quando sempre openSet risulta vuoto. Infatti, tra i vertici contenuti in questa struttura dati, prendiamo all'inizio di ogni ciclo quello con il valore di fScore minimo in quel momento e lo rimuoviamo.
 
-Sempre nella stessa iterazione openSet verrà popolato dei vicini del vertice appena rimosso, in caso essi non siano già presenti, nell’evenienza che quest’ultimi abbiano un valore di gScore per il percorso attualmente in esame minore rispetto a quello precedentemente riscontrato (aggiornando ovviamente i valori di gScore, fScore e cameFrom ad essi associati).
-L’avvenimento di un openSet vuoto indica un fallimento nel trovare un percorso verso il goal.
+Sempre nella stessa iterazione openSet verrà popolato dei vicini del vertice appena rimosso, in caso essi non siano già presenti, nell'evenienza che quest'ultimi abbiano un valore di gScore per il percorso attualmente in esame minore rispetto a quello precedentemente riscontrato (aggiornando ovviamente i valori di gScore, fScore e cameFrom ad essi associati).
+L'avvenimento di un openSet vuoto indica un fallimento nel trovare un percorso verso il goal.
 
-Possiamo considerare un successo invece l’evento in cui il nodo di openSet con il minimo valore in fScore è proprio il goal. A quel punto viene richiamato il metodo reconstructPath che partendo dal nodo di goal procede al contrario e ricostruisce il percorso sulla base della lista di predecessori cameFrom. 
+Possiamo considerare un successo invece l'evento in cui il nodo di openSet con il minimo valore in fScore è proprio il goal. A quel punto viene richiamato il metodo reconstructPath che partendo dal nodo di goal procede al contrario e ricostruisce il percorso sulla base della lista di predecessori cameFrom. 
 
 \begin{algorithm}[H]
 	\SetAlgoLined
@@ -164,20 +164,108 @@ Possiamo considerare un successo invece l’evento in cui il nodo di openSet con
 	\caption{Iterazione principale dell'Algoritmo A*}
 \end{algorithm}
 \bigskip
-Le strutture dati utilizzate in prima istanza per i set necessari sono state un Array dinamico per openSet e delle Map per gli altri tre, in quanto si trattano di strutture dati dinamiche costituite da coppie di variabili che ci permettono facilmente di associare ogni vertice ad un valore, che sia l’id del nodo predecessore per cameFrom, che sia il cammino di costo minimo attualmente conosciuto per gScore o che sia il valore minimo di f(n) per fScore.
+Le strutture dati utilizzate in prima istanza per i set necessari sono state un Array dinamico per openSet e delle Map per gli altri tre, in quanto si trattano di strutture dati dinamiche costituite da coppie di variabili che ci permettono facilmente di associare ogni vertice ad un valore, che sia l'id del nodo predecessore per cameFrom, che sia il cammino di costo minimo attualmente conosciuto per gScore o che sia il valore minimo di f(n) per fScore.
 
 
-La struttura del grafo è stata implementata tramite l’utilizzo di liste di adiacenza, in quanto non è tanto importante sapere se due vertici sono vicini, quanto conoscere quali siano i vicini di un dato vertice, dunque l’utilizzo di matrici di adiacenza non avrebbe portato particolari  benefici.
+La struttura del grafo è stata implementata tramite l'utilizzo di liste di adiacenza, in quanto non è tanto importante sapere se due vertici sono vicini, quanto conoscere quali siano i vicini di un dato vertice, dunque l'utilizzo di matrici di adiacenza non avrebbe portato particolari  benefici.
 
 
-Nel caso di openSet, al fine di evitare di introdurre un fattore di complessità O(m) (con m numero di vertici in openSet) ogni volta che occorreva cercare il vertice con il minimo valore di fScore associato, abbiamo deciso di cambiare la sua struttura da semplice array ad una lista di priorità, realizzata con un min-heap binario, ordinato in senso crescente sulla base dei corrispettivi valori di fScore, così da avere, tramite i metodi per l’implementazione delle code, una complessità al più O(lgn). 
-In questo caso invece di richiamare sui nodi adiacenti un metodo che effettua una ricerca del minimo, prendiamo direttamente il primo elemento dalla coda di priorità.\\ \\ Il nostro min-heap binario è stato implementato con un Array \emph{(NB: In Javascript la maggior parte degli Array sono delle strutture dinamiche paragonabili agli ArrayList di Java)}. Possiamo contare su un accesso diretto ai valori dell’fScore, perciò la Priority Queue ci permette di risparmiare sul tempo di elaborazione.
+Nel caso di openSet, al fine di evitare di introdurre un fattore di complessità O(m) (con m numero di vertici in openSet) ogni volta che occorreva cercare il vertice con il minimo valore di fScore associato, abbiamo deciso di cambiare la sua struttura da semplice array ad una lista di priorità, realizzata con un min-heap binario, ordinato in senso crescente sulla base dei corrispettivi valori di fScore, così da avere, tramite i metodi per l'implementazione delle code, una complessità al più O(lgn). 
+In questo caso invece di richiamare sui nodi adiacenti un metodo che effettua una ricerca del minimo, prendiamo direttamente il primo elemento dalla coda di priorità.\\ \\ Il nostro min-heap binario è stato implementato con un Array \emph{(NB: In Javascript la maggior parte degli Array sono delle strutture dinamiche paragonabili agli ArrayList di Java)}. Possiamo contare su un accesso diretto ai valori dell'fScore, perciò la Priority Queue ci permette di risparmiare sul tempo di elaborazione.
 
 
-In molti pseudocodici dell’algoritmo reperiti online si utilizza anche un’altra struttura dati, closedSet, ovvero la lista dei nodi tolti da openSet e da non analizzare nuovamente se appaiono tra i vicini del nodo in analisi. Nel codice, per non andare ad aggiungere fattori di complessità, è stata implementata tramite una Map a cui all’ID del vertice viene associata una booleana. Tuttavia, testandola in una classe a parte, abbiamo notato che, grazie alla nostra funzione euristica consistente, i benefici a livello di tempo di esecuzione erano praticamente nulli anche per input più “impegnativi”. 
+In molti pseudocodici dell'algoritmo reperiti online si utilizza anche un'altra struttura dati, closedSet, ovvero la lista dei nodi tolti da openSet e da non analizzare nuovamente se appaiono tra i vicini del nodo in analisi. Nel codice, per non andare ad aggiungere fattori di complessità, è stata implementata tramite una Map a cui all'ID del vertice viene associata una booleana. Tuttavia, testandola in una classe a parte, abbiamo notato che, grazie alla nostra funzione euristica consistente, i benefici a livello di tempo di esecuzione erano praticamente nulli anche per input più “impegnativi”. 
 
 
-Per quanto riguarda la creazione dei grafi concreti su cui testare il nostro codice ci siamo basati su una convenzione definita dai file di dati della rete stradale californiana offerta dall'Università dello Utah: andiamo infatti a leggere riga per riga due file, uno in cui sono definiti i nodi del grafo con le loro coordinate spaziali e il loro ID, e uno in cui sono definiti gli archi, quali nodi comprendono e la distanza tra i due. Dalla lettura siamo in grado di utilizzare questi dati per popolare la lista di adiacenza del nostro grafo. I grafi presi in considerazione sono non orientati, quindi ovviamente l’applicazione non tiene conto delle direzioni reali lungo le quali ci si può muovere nella realtà o dei sensi unici.
+Per quanto riguarda la creazione dei grafi concreti su cui testare il nostro codice ci siamo basati su una convenzione definita dai file di dati della rete stradale californiana offerta dall'Università dello Utah: andiamo infatti a leggere riga per riga due file, uno in cui sono definiti i nodi del grafo con le loro coordinate spaziali e il loro ID, e uno in cui sono definiti gli archi, quali nodi comprendono e la distanza tra i due. Dalla lettura siamo in grado di utilizzare questi dati per popolare la lista di adiacenza del nostro grafo. I grafi presi in considerazione sono non orientati, quindi ovviamente l'applicazione non tiene conto delle direzioni reali lungo le quali ci si può muovere nella realtà o dei sensi unici.
+
+\chapter{Analisi della complessità}
+
+La complessità dell'algoritmo A*, per un grafo di n vertici, dipende da molti fattori.
+In primo luogo si svolge un'inizializzazione delle mappe, per cui occorre mettere tutti i valori di gScore e fScore al valore Infinity: ciò ha complessità O(n).
+
+
+Successivamente passiamo alla creazione della coda di priorità per openSet: dato che abbiamo utilizzato un min-heap binario (per evitare sprechi di memoria e perchè l'operazione di union tra heap, l'unica di costo \(\Theta\)(n), non risulta utile per i fini dell'algoritmo) sappiamo che la complessità di insert, extractMin e decreaseKey in generale sono O(lgn).
+\\
+
+Nell'algoritmo implementato il primo ciclo while viene eseguito nel caso peggiore n volte, fino che non è stato svuotato completamente openSet, dunque extractMin() viene richiamato al più n volte, dunque è un O(nlgn).
+
+
+Invece il for al suo interno sarà, sempre nel caso peggiore, ripetuto per O(m) volte, ove m è il numero di archi del nostro grafo, dunque decreaseKey sarà un O(mlgn). Dunque la complessità nel caso peggiore di A* sembra essere uguale a quella di Dijkstra cioè O((n+m)lgn), ma in realtà la caratteristica prima di A* è che gli effettivi nodi che vengono visitati sono molti meno rispetto a quelli visitati con Dijkstra, proprio grazie all'euristica, che calcola la lontananza dei nodi dal goal, scartando a priori quelli con f(n) troppo elevato.
+Inoltre è praticamente impossibile che ogni nodo del grafo abbia un arco che lo collega ad ogni altro nodo del grafo.
+
+Dunque una rappresentazione più accurata della complessità dell'algoritmo può essere espressa parlando di media dei vicini per nodo, che chiamiamo b (\emph{branching factor} o fattore di diramazione) e tramite profondità del percorso stesso, cioè il numero di nodi d che separano i due punti del grafo considerando una soluzione ottima.
+
+Inoltre in questo modo è facile capire che la complessità sarà \[1+b^1+b^2+...+b^d = O(b^{d})\]\newpage
+Effettivamente abbiamo osservato che più i nostri punti sulla mappa sono lontani più il tempo di esecuzione dell'algoritmo aumenta.
+Tuttavia questa complessità esponenziale può essere ridotta ad una polinomiale se l'euristica soddisfa l'equazione \[|(h(n_i)-h^*(n_i))| = O(log(h^*(n_i))\]
+ove h* è l'euristica ideale e \(n_i\) l'i-esimo nodo del cammino ottimale con i \(\epsilon\) [1, d].
+
+
+Inoltre, per quanto riguarda l'ottimalità dell'algoritmo, abbiamo notato che i percorsi trovati sono ottimi solo se l'euristica è consistente. È stata fatta una prova infatti anche con un'altra euristica ammissibile e consistente, ovvero la distanza di Manhattan, oltre che quella euclidea e sono state messe a confronto con i percorsi calcolati secondo un'euristica creata randomicamente e quindi, quasi sicuramente non ammissibile e consistente.
+I percorsi ottenuti sono sicuramente più lunghi e poco ottimali, in quanto l'euristica non è ben pensata in quanto non ha legami con la realtà di interesse. 
+
+\chapter{Esempi di applicazione}
+
+Data la natura ormai fondamentale nella quotidianità della maggior parte delle persone di algoritmi che si basano sugli stessi concetti di A*, abbiamo voluto testare il nostro applicativo andando a selezionare gli stessi tragitti sul celebre portale Google Maps per verificare di quanto variassero i percorsi prodotti dal nostro algoritmo e da uno commerciale. I risultati, seppur con qualche differenza data più che altro però dalla struttura del grafo rappresentante le mappe (un esempio tra tutti sono i tragitti al nord della California, dove alcuni percorsi sono più convenienti se prese delle deviazioni situate in Oregon, uno stato non mappato nei nostri file), risultano incredibilmente simili a quelli reali.
+
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[width=1.05\textwidth]{img/es1.png}
+		\caption{Nord della California (con deviazione in Oregon)}
+	\end{figure}
+
+	\begin{figure}[H]
+		\includegraphics[width=1.05\textwidth]{img/es2.png}
+		\caption{Costa Californiana}
+	\end{figure}
+\bigskip\bigskip\bigskip\bigskip
+	\begin{figure}[H]
+		\includegraphics[width=1.05\textwidth]{img/es3.png}
+		\caption{Perugia (Nei pressi dell'Università per Stranieri)}
+	\end{figure}
+
+	\begin{figure}[H]
+		\includegraphics[width=1.05\textwidth]{img/es4.png}
+		\caption{Perugia (Nei pressi di Piazza Partigiani)}
+	\end{figure}
+\end{center}
+
+\chapter{Discussione dei dati\\sperimentali}
+
+Prese coppie di nodi nella mappa stradale della California con fattore di diramazione \(b \simeq N^\frac{1}{d}\), numero totale di vicini N e profondità del cammino ottimo d differenti, abbiamo ricavato la variazione del tempo di esecuzione:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\textbf{d} & \textbf{N} & \textbf{b} & \textbf{Tempo (ms)}       \\ \midrule
+		569 & 42695 & 1.0189 & 9  \\
+		573 & 42803 & 1.0187 & 12 \\
+		577 & 42904 & 1.0186 & 10 \\
+		580 & 42964 & 1.0185 & 10 \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+Abbiamo svolto poi lo stesso lavoro sulla mappa stradale di Perugia ed ottenuto questi risultati:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\textbf{d} & \textbf{N} & \textbf{b} & \textbf{Tempo (ms)}       \\ \midrule
+		66  & 6549  & 1.13 & 9  \\
+		70  & 6962  & 1.14 & 7  \\
+		80  & 9117  & 1.12 & 11 \\
+		83  & 9422  & 1.11 & 7  \\
+		116 & 13695 & 1.08 & 3 \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+In entrambe le tabelle si può notare come al crescere di d e di b il tempo di elaborazione effettivamente aumenta. Sperimentalmente abbiamo visto che l'euristica si mantiene buona se b medio è sufficientemente vicino a 1 (\(<\)1.5).
+
+Abbiamo constatato tramite coordinate geografiche reali che effettivamente l'utilizzo di una coda di priorità e dei suoi metodi extractMin(), minHeapify(),
+\\insert(), delete() e decreaseKey() il tempo di ricerca del percorso migliore è diminuito nell'ordine dei millisecondi.
 
 
 \end{document}
