@@ -5,6 +5,7 @@
 const electron = require('electron');
 const GraphCreator = require(__dirname+'\\astar\\graphCreator');
 const Astar = require(__dirname+'\\astar\\astarPQDC');
+const fs = require('fs');
 var vertices;
 var g;
 var map;
@@ -56,7 +57,7 @@ function createGraph(){
 
   // Richiediamo l'accesso alle funzioni di HERE Map tramite la nostra API key
   var platform = new H.service.Platform({
-    apikey: ""
+    apikey: fs.readFileSync(__dirname+"\\mapsapikey.txt").toString()
   });
   var defaultLayers = platform.createDefaultLayers();
 
