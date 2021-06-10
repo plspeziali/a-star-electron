@@ -24,6 +24,79 @@
 \usepackage{listings}
 \usepackage{bookmark}
 \usepackage[ruled,vlined]{algorithm2e}
+% Taken from Lena Herrmann at 
+% http://lenaherrmann.net/2010/05/20/javascript-syntax-highlighting-in-the-latex-listings-package
+
+\usepackage{color} %use color
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+%Customize a bit the look
+\lstset{ %
+backgroundcolor=\color{white}, % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+basicstyle=\footnotesize, % the size of the fonts that are used for the code
+breakatwhitespace=false, % sets if automatic breaks should only happen at whitespace
+breaklines=true, % sets automatic line breaking
+captionpos=b, % sets the caption-position to bottom
+commentstyle=\color{mygreen}, % comment style
+deletekeywords={...}, % if you want to delete keywords from the given language
+escapeinside={\%*}{*)}, % if you want to add LaTeX within your code
+extendedchars=true, % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+frame=single, % adds a frame around the code
+keepspaces=true, % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+keywordstyle=\color{blue}, % keyword style
+% language=Octave, % the language of the code
+morekeywords={*,...}, % if you want to add more keywords to the set
+numbers=left, % where to put the line-numbers; possible values are (none, left, right)
+numbersep=5pt, % how far the line-numbers are from the code
+numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+rulecolor=\color{black}, % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+showspaces=false, % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+showstringspaces=false, % underline spaces within strings only
+showtabs=false, % show tabs within strings adding particular underscores
+stepnumber=1, % the step between two line-numbers. If it's 1, each line will be numbered
+stringstyle=\color{mymauve}, % string literal style
+tabsize=2, % sets default tabsize to 2 spaces
+title=\lstname % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+%END of listing package%
+
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+%define Javascript language
+\lstdefinelanguage{JavaScript}{
+keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, for, of},
+keywordstyle=\color{blue}\bfseries,
+ndkeywords={class, export, boolean, throw, implements, import, this},
+ndkeywordstyle=\color{darkgray}\bfseries,
+identifierstyle=\color{black},
+sensitive=false,
+comment=[l]{//},
+morecomment=[s]{/*}{*/},
+commentstyle=\color{purple}\ttfamily,
+stringstyle=\color{red}\ttfamily,
+morestring=[b]',
+morestring=[b]"
+}
+
+\lstset{
+language=JavaScript,
+extendedchars=true,
+basicstyle=\footnotesize\ttfamily,
+showstringspaces=false,
+showspaces=false,
+numbers=left,
+numberstyle=\footnotesize,
+numbersep=9pt,
+tabsize=2,
+breaklines=true,
+showtabs=false,
+captionpos=b
+}
+
+
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 
 
@@ -126,7 +199,7 @@ Viene in particolare scelto quel nodo che minimizza il valore fScore f(n) tale c
 \newpage
 Per implementare l'algoritmo sono state utilizzate principalmente quattro strutture dati:
 \begin{itemize}
-	\item \textbf{openSet}: l'insieme dei vertici che sono stati scoperti, e dei quali ancora occorre scoprire i vicini, e dei vertici già analizzati in precedenza per cui si tenta però di trovare un percorso di costo minore (eventualità rara se si utilizza una funzione euristica consistente come nel nostro caso); %\footnote[1]{\(h(x) ≤ d(x, y) + h(y)\) per ogni arco (x, y) del grafo dove d denota la lunghezza dell'arco}
+	\item \textbf{openSet}: l'insieme dei vertici che sono stati scoperti, e dei quali ancora occorre scoprire i vicini, e dei vertici già analizzati in precedenza per cui si tenta però di trovare un percorso di costo minore (eventualità rara se si utilizza una funzione euristica consistente\footnote[1]{\(h(x) \leq d(x, y) + h(y)\) per ogni arco (x, y) del grafo dove d denota la lunghezza dell'arco} come nel nostro caso); 
 	\item \textbf{cameFrom}: l'insieme dei vertici candidati per essere inclusi nel percorso finale associati al nodo da cui si proviene per arrivarci;
 	\item \textbf{gScore}: contiene tutti i vertici con associato il percorso più economico conosciuto fino a quel momento per arrivare ad esso a partire dal vertice di start;
 	\item \textbf{fScore}:  presenta tutti i vertici con associato il minimo valore di f(n), ciò rappresenta il costo del percorso stimato più breve fino a quel momento per arrivare al goal passando attraverso il nodo n. 
@@ -167,7 +240,7 @@ Possiamo considerare un successo invece l'evento in cui il nodo di openSet con i
 Le strutture dati utilizzate in prima istanza per i set necessari sono state un Array dinamico per openSet e delle Map per gli altri tre, in quanto si trattano di strutture dati dinamiche costituite da coppie di variabili che ci permettono facilmente di associare ogni vertice ad un valore, che sia l'id del nodo predecessore per cameFrom, che sia il cammino di costo minimo attualmente conosciuto per gScore o che sia il valore minimo di f(n) per fScore.
 
 
-La struttura del grafo è stata implementata tramite l'utilizzo di liste di adiacenza (con occupazione di memoria pari a \(\Theta\)(n + m) con n = |V| e m = |E|, in quanto non è tanto importante sapere se due vertici sono vicini, quanto conoscere quali siano i vicini di un dato vertice, dunque l'utilizzo di matrici di adiacenza non avrebbe portato particolari  benefici.
+La struttura del grafo è stata implementata tramite l'utilizzo di liste di adiacenza (con occupazione di memoria pari a \(\Theta\)(n + m) con n = \(|V|\) e m = \(|E|\), in quanto non è tanto importante sapere se due vertici sono vicini, quanto conoscere quali siano i vicini di un dato vertice, dunque l'utilizzo di matrici di adiacenza non avrebbe portato particolari  benefici.
 
 
 Nel caso di openSet, al fine di evitare di introdurre un fattore di complessità O(m) (con m numero di vertici in openSet) ogni volta che occorreva cercare il vertice con il minimo valore di fScore associato, abbiamo deciso di cambiare la sua struttura da semplice array ad una lista di priorità, realizzata con un min-heap binario, ordinato in senso crescente sulla base dei corrispettivi valori di fScore, così da avere, tramite i metodi per l'implementazione delle code, una complessità al più O(lgn). 
@@ -178,6 +251,43 @@ In molti pseudocodici dell'algoritmo reperiti online si utilizza anche un'altra 
 
 
 Per quanto riguarda la creazione dei grafi concreti su cui testare il nostro codice ci siamo basati su una convenzione definita dai file di dati della rete stradale californiana offerta dall'Università dello Utah: andiamo infatti a leggere riga per riga due file, uno in cui sono definiti i nodi del grafo con le loro coordinate spaziali e il loro ID, e uno in cui sono definiti gli archi, quali nodi comprendono e la distanza tra i due. Dalla lettura siamo in grado di utilizzare questi dati per popolare la lista di adiacenza del nostro grafo. I grafi presi in considerazione sono non orientati, quindi ovviamente l'applicazione non tiene conto delle direzioni reali lungo le quali ci si può muovere nella realtà o dei sensi unici.
+\newpage
+Di seguito ecco il codice Javascript finale della while principale di A* utilizzando openSet come coda di priorità:
+\\
+\begin{lstlisting}[language=JavaScript]
+	while(openSet.size() !== 0){
+		// Prendiamo il nodo in openSet con minor valore di fScore
+		current = openSet.extractMin();
+		//Se siamo arrivati al nodo di goal richiamiamo il metodo reconstructPath
+		if(current == goal.id){
+			return reconstructPath(cameFrom, current, visited)
+		} 
+		//Ricaviamo i vicini di current
+		let neighbors = graph.getNeighbors(current)
+		//Per ogni vicino di current 
+		for(let edge of neighbors){
+			visited++;
+			// Ogni edge e' formato da una coppia Vertex e Cost
+			let neighbor = edge.vertex;
+			let tentative_gScore = gScore[current] + edge.cost;
+			// Se il nuovo gscore e' minore di quello registrato precedentemente, aggiorniamo i valori relativi
+			if(tentative_gScore < gScore[neighbor.id]){
+				cameFrom[neighbor.id] = current;
+				gScore[neighbor.id] = tentative_gScore;
+				fScore[neighbor.id] = gScore[neighbor.id] + goal.heuristic(neighbor);
+				// Controlliamo se il vicino in questione e' gia' stato inserito in openSet
+				let index = openSet.indexOf(neighbor.id);
+				if(index == -1){
+					//Se il vicino non era gia' in openSet lo aggiungiamo
+					openSet.insert(neighbor.id);
+				} else {
+					// Se e' gia' presente, aggiorniamo la sua posizione nella coda
+					openSet.decreaseKey(index);
+				}
+			}
+		}
+	}
+\end{lstlisting}
 
 \chapter{Analisi della complessità}
 
