@@ -178,9 +178,11 @@ Tale algoritmo si avvale dell'utilizzo di grafi pesati (con pesi non negativi) e
 
 Nell'ambito delle problematiche di ricerca dei cammini minimi il primo pensiero può andare verso una soluzione implementata con il classico algoritmo di Dijkstra o con altri che svolgono una ricerca in ampiezza. Tuttavia la conoscenza di maggiori informazioni, nel nostro caso la posizione del punto di arrivo, ci permette di sfruttare questa soluzione decisamente meno onerosa dal punto di vista computazionale.
 
-L'algoritmo A* può essere considerato un algoritmo analogo a quello di Dijkstra con la differenza che, mentre quest'ultimo esplora tutti i possibili cammini, tra i nodi connessi, con un raggio d'azione circolare che va espandendosi fino a trovare il traguardo e su questi definisce quale è il migliore, A* cerca direttamente il cammino minimo usando la funzione euristica e quindi dando priorità ai nodi che sono stimati essere migliori di altri. Ovviamente A* funziona bene solo quando l'euristica che viene definita per i nodi è ammissibile, cioè non sovrastima mai la distanza effettiva verso la meta. Nel nostro caso come euristica ammissibile abbiamo utilizzato la distanza effettiva in linea d'aria tra i nodi e il goal.
+L'algoritmo A* può essere considerato un algoritmo analogo a quello di Dijkstra con la differenza che, mentre quest'ultimo esplora tutti i possibili cammini, tra i nodi connessi, con un raggio d'azione circolare che va espandendosi fino a trovare il traguardo e su questi definisce quale è il migliore, A* cerca direttamente il cammino minimo usando la funzione euristica e quindi dando priorità ai nodi che sono stimati essere migliori di altri. Rispetto a Dijkstra andremo quindi a visitare solo i nodi necessari e candidati ad essere quelli del cammino ottimo. Ovviamente A* funziona bene solo quando l'euristica che viene definita per i nodi è ammissibile, cioè non sovrastima mai la distanza effettiva verso la meta. Nel nostro caso come euristica ammissibile abbiamo utilizzato la distanza effettiva in linea d'aria tra i nodi e il goal.
 
-A* funziona in maniera ottimale se l'euristica è anche consistente, cioè tale che per ogni nodo N e per ogni suo vicino P del grafo risulta che \[h(N) \leq h(P) + c(N,P)\]dove c(N,P) è il peso del grafo tra N e P.\\\\La nostra euristica soddisfa tale proprietà in quanto è possibile costruire sempre un triangolo con i vertici N, P e il goal G e, sapendo che la lunghezza del lato NP è sempre minore della somma degli altri due, tale uguaglianza vale.
+
+\newpage
+A* funziona in maniera ottimale se l'euristica è anche consistente, cioè tale che per ogni nodo N e per ogni suo vicino P del grafo risulta che \[h(N) \leq h(P) + c(N,P)\]dove c(N,P) è il peso del grafo tra N e P. La nostra euristica soddisfa tale proprietà in quanto è possibile costruire sempre un triangolo con i vertici N, P e il goal G e, sapendo che la lunghezza del lato NP è sempre minore della somma degli altri due, tale uguaglianza vale.
 
 Possiamo dire che A* è sicuramente più efficace ed efficiente rispetto a Dijkstra, per grafi molto ampi, se si vuole calcolare un percorso ottimo tra due punti in maniera rapida, a scapito ovviamente di un maggiore utilizzo della memoria dovuto alla presenza dell'euristica. Se si hanno a disposizione le informazioni che ci permettono di definire l'euristica, A* è preferibile.
 
@@ -299,24 +301,34 @@ Successivamente passiamo alla creazione della coda di priorità per openSet: dat
 \\
 
 Nell'algoritmo implementato il primo ciclo while viene eseguito nel caso peggiore n volte, ad esempio nel caso in cui il grafo sia formato dall'unico cammino dallo start al goal, fino che non è stato svuotato completamente openSet, dunque extractMin() viene richiamato al più n volte, dunque è un O(nlgn).
+Questo caso appena citato è il caso peggiore se considerassimo solo questo ciclo while in quanto, come vedremo, la presenza di un unico vicino (eccetto un eventuale predecessore) è un beneficio per la for interna.
+
+Infatti il for al suo interno sarà, sempre nel caso peggiore, dato che occorre visualizzare i vicini di ogni nodo di openSet selezionato tramite la scelta golosa, ripetuto per 2m volte \footnote[2]{Per le proprietà dei grafi non orientati} e ha quindi complessità O(m), dove m è il numero di archi del nostro grafo.
+In questa for le istruzioni più complesse (indexOf, insert e decreaseKey) si trovano però dentro ad una if, la quale, per tutta la durata del programma, viene acceduta almeno d volte dove d è la profondità del cammino ottimo.
 
 
-Invece il for al suo interno sarà, sempre nel caso peggiore, dato che occorre visualizzare i vicini di ogni nodo di openSet selezionato tramite la scelta golosa, ripetuto per 2m volte \footnote[2]{Per le proprietà dei grafi non orientati}, dove m è il numero di archi del nostro grafo, dunque la if che contiene insert o decreaseKey sarà un O(mlgn). Perciò la complessità nel caso peggiore di A* sembra essere uguale a quella di Dijkstra cioè O((n+m)lgn), ma in realtà la caratteristica prima di A* è che gli effettivi nodi che vengono visitati sono molti meno rispetto a quelli visitati con Dijkstra, proprio grazie all'euristica. Essa infatti calcola la lontananza dei nodi dal goal scartando a priori quelli con f(n) troppo elevato.
+In generale, eccetto nel caso di cui parlavamo prima nel quale entriamo nella for una sola volta per il nostro unico vicino e lì troviamo complessità irrisorie (massimo O(2) per indexOf dato il nostro openSet di due elementi), d è sempre molto minore rispetto al numero dei vicini del nostro cammino e quindi al numero di volte che eseguiremo la for.
+
+Notiamo quindi che il caso peggiore per la while esterna sembra essere il caso migliore per la for interna e viceversa.
+
+
+Perciò la complessità nel caso peggiore di A* sembra essere O(nlgn + m) ma nella pratica, poiché la caratteristica prima di A* è che gli effettivi nodi che vengono visitati sono molti meno rispetto a quelli totali, proprio grazie all'euristica, non ci sembra un modo adatto a rappresentarla.
+La funzione euristica infatti calcola la lontananza dei nodi dal goal scartando a priori quelli con f(n) troppo elevato.
 Inoltre è altamente improbabile che, in un'applicazione pratica in cui utilizziamo A*, si presenti un grafo formato da un unico percorso che dallo start porta al goal.
 
 Dunque una rappresentazione più accurata della complessità dell'algoritmo può essere espressa parlando di media dei vicini per nodo, che chiamiamo b (\emph{branching factor} o fattore di diramazione, il valore medio del grado dei nodi), e tramite la profondità del percorso stesso, cioè il numero di nodi d che separano i due punti del grafo considerando una soluzione ottima.
 
-Inoltre in questo modo è facile capire che la complessità sarà \[1+b^1+b^2+...+b^d = O(b^{d})\]
+Inoltre in questo modo è facile capire che la complessità sarà \[1+b+b^2+...+b^d = O(b^{d})\]
 
 
-Effettivamente abbiamo osservato che più i nostri punti sulla mappa sono lontani più il tempo di esecuzione dell'algoritmo aumenta.
+Effettivamente abbiamo osservato che più i nostri punti sulla mappa sono lontani e/o b è elevato più il tempo di esecuzione dell'algoritmo aumenta.
 Tuttavia questa complessità esponenziale può essere ridotta ad una polinomiale se l'euristica soddisfa l'equazione \[|(h(n_i)-h^*(n_i))| = O(log(h^*(n_i))\]
 ove h* è l'euristica ideale e \(n_i\) l'i-esimo nodo del cammino ottimale con i \(\epsilon\) [1, d].
 \\
 
 
 Inoltre, per quanto riguarda l'ottimalità dell'algoritmo, abbiamo notato che i percorsi trovati sono ottimi solo se l'euristica è consistente. È stata fatta una prova infatti anche con un'altra euristica ammissibile e consistente, ovvero la distanza di Manhattan, oltre che quella euclidea e sono state messe a confronto con i percorsi calcolati secondo un'euristica creata randomicamente e quindi, quasi sicuramente non ammissibile e consistente.
-I percorsi ottenuti sono sicuramente più lunghi e poco ottimali, in quanto l'euristica non è ben pensata in quanto non ha legami con la realtà di interesse. 
+I percorsi ottenuti sono sicuramente più lunghi e poco ottimali, in quanto l'euristica non è ben pensata, non avendo legami con la realtà di interesse. 
 
 \chapter{Esempi di applicazione}
 
