@@ -298,18 +298,21 @@ In primo luogo si svolge un'inizializzazione delle mappe, per cui occorre metter
 Successivamente passiamo alla creazione della coda di priorità per openSet: dato che abbiamo utilizzato un min-heap binario (per evitare sprechi di memoria e perchè l'operazione di union tra heap, l'unica di costo \(\Theta\)(n), non risulta utile per i fini dell'algoritmo) sappiamo che la complessità di insert, extractMin e decreaseKey in generale sono O(lgn).
 \\
 
-Nell'algoritmo implementato il primo ciclo while viene eseguito nel caso peggiore n volte, fino che non è stato svuotato completamente openSet, dunque extractMin() viene richiamato al più n volte, dunque è un O(nlgn).
+Nell'algoritmo implementato il primo ciclo while viene eseguito nel caso peggiore n volte, ad esempio nel caso in cui il grafo sia formato dall'unico cammino dallo start al goal, fino che non è stato svuotato completamente openSet, dunque extractMin() viene richiamato al più n volte, dunque è un O(nlgn).
 
 
-Invece il for al suo interno sarà, sempre nel caso peggiore, ripetuto per O(m) volte, dove m è il numero di archi del nostro grafo, dunque la if che contiene insert o decreaseKey sarà un O(mlgn). Dunque la complessità nel caso peggiore di A* sembra essere uguale a quella di Dijkstra cioè O((n+m)lgn), ma in realtà la caratteristica prima di A* è che gli effettivi nodi che vengono visitati sono molti meno rispetto a quelli visitati con Dijkstra, proprio grazie all'euristica, che calcola la lontananza dei nodi dal goal, scartando a priori quelli con f(n) troppo elevato.
-Inoltre è praticamente impossibile che ogni nodo del grafo abbia un arco che lo collega ad ogni altro nodo del grafo.
+Invece il for al suo interno sarà, sempre nel caso peggiore, dato che occorre visualizzare i vicini di ogni nodo di openSet selezionato tramite la scelta golosa, ripetuto per 2m volte \footnote[2]{Per le proprietà dei grafi non orientati}, dove m è il numero di archi del nostro grafo, dunque la if che contiene insert o decreaseKey sarà un O(mlgn). Perciò la complessità nel caso peggiore di A* sembra essere uguale a quella di Dijkstra cioè O((n+m)lgn), ma in realtà la caratteristica prima di A* è che gli effettivi nodi che vengono visitati sono molti meno rispetto a quelli visitati con Dijkstra, proprio grazie all'euristica. Essa infatti calcola la lontananza dei nodi dal goal scartando a priori quelli con f(n) troppo elevato.
+Inoltre è altamente improbabile che, in un'applicazione pratica in cui utilizziamo A*, si presenti un grafo formato da un unico percorso che dallo start porta al goal.
 
-Dunque una rappresentazione più accurata della complessità dell'algoritmo può essere espressa parlando di media dei vicini per nodo, che chiamiamo b (\emph{branching factor} o fattore di diramazione) e tramite profondità del percorso stesso, cioè il numero di nodi d che separano i due punti del grafo considerando una soluzione ottima.
+Dunque una rappresentazione più accurata della complessità dell'algoritmo può essere espressa parlando di media dei vicini per nodo, che chiamiamo b (\emph{branching factor} o fattore di diramazione, il valore medio del grado dei nodi), e tramite la profondità del percorso stesso, cioè il numero di nodi d che separano i due punti del grafo considerando una soluzione ottima.
 
-Inoltre in questo modo è facile capire che la complessità sarà \[1+b^1+b^2+...+b^d = O(b^{d})\]\newpage
+Inoltre in questo modo è facile capire che la complessità sarà \[1+b^1+b^2+...+b^d = O(b^{d})\]
+
+
 Effettivamente abbiamo osservato che più i nostri punti sulla mappa sono lontani più il tempo di esecuzione dell'algoritmo aumenta.
 Tuttavia questa complessità esponenziale può essere ridotta ad una polinomiale se l'euristica soddisfa l'equazione \[|(h(n_i)-h^*(n_i))| = O(log(h^*(n_i))\]
 ove h* è l'euristica ideale e \(n_i\) l'i-esimo nodo del cammino ottimale con i \(\epsilon\) [1, d].
+\\
 
 
 Inoltre, per quanto riguarda l'ottimalità dell'algoritmo, abbiamo notato che i percorsi trovati sono ottimi solo se l'euristica è consistente. È stata fatta una prova infatti anche con un'altra euristica ammissibile e consistente, ovvero la distanza di Manhattan, oltre che quella euclidea e sono state messe a confronto con i percorsi calcolati secondo un'euristica creata randomicamente e quindi, quasi sicuramente non ammissibile e consistente.
