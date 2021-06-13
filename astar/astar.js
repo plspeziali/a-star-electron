@@ -7,6 +7,8 @@ module.exports = {
         var gScore = new Map();//
         var fScore = new Map();//
 
+        var visited = 0;
+
         for (let v of graph.adjList.keys()){//per ogni vertice che è nel grafo assegno una gScore Infinita
             gScore[v.id] = Infinity;
             fScore[v.id] = Infinity;
@@ -17,11 +19,12 @@ module.exports = {
         while(openSet.length !== 0){
             current = module.exports.minKey(fScore, openSet);
             if(current === goal.id){
-                return module.exports.reconstructPath(cameFrom, current)
+                return module.exports.reconstructPath(cameFrom, current, visited)
             }
             openSet.splice(openSet.indexOf(current),1);
             let neighbors = graph.getNeighbors(current)
             for(let edge of neighbors){
+                visited++;
                 neighbor = edge.vertex;
                 let tentative_gScore = gScore[current] + edge.cost;
                 //console.log("tentative_gScore: "+tentative_gScore);
@@ -41,14 +44,14 @@ module.exports = {
         return false;
     },
 
-    reconstructPath(cameFrom, current){
+    reconstructPath(cameFrom, current, visited){
         var totalPath = new Array();
         totalPath.push(current);
         while(typeof(cameFrom[current]) !== "undefined"){
             current = cameFrom[current]
             totalPath.push(current);
         }
-        return totalPath.reverse()
+        return [totalPath.reverse(), visited]
     },
 
     minKey(map, list){

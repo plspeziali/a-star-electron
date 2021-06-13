@@ -391,6 +391,32 @@ In entrambe le tabelle si può notare come al crescere di d e di b il tempo di e
 
 Abbiamo constatato tramite coordinate geografiche reali che effettivamente l'utilizzo di una coda di priorità e dei suoi metodi extractMin(), minHeapify(),
 \\insert(), delete() e decreaseKey() il tempo di ricerca del percorso migliore è diminuito nell'ordine dei millisecondi.
+Riportiamo di seguito la differenza di tempo d'esecuzione tra A* senza e con code di priorità presi tre tragitti d'esempio (due tra nodi relativamente lontani e l'ultimo tra nodi relativamente vicini).
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\textbf{Nodo 1} & \textbf{Nodo 2} & \textbf{Tempo senza PQ (ms)} & \textbf{Tempo con PQ (ms)}\\ \midrule
+		7999 & 2231  & 15  & 10  \\
+		10000 & 20000  & 25  & 21  \\
+		9444 & 9553  & 3  & 2  \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+
+\chapter{Fonti}
+
+\begin{itemize}
+	\item \href{http://ozark.hendrix.edu/~ferrer/courses/335/f11/lectures/effective-branching.html}{Effective Branching Factor}
+	\item \href{http://pages.di.unipi.it/micheli/DID/IIA-2016/part1/4e5-2016-infosearch-post-lez.pdf}{Ricerca Euristica UniPi}
+	\item \href{https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/}{Manhattan Distance}
+	\item \href{https://en.wikipedia.org/wiki/A*_search_algorithm}{A* Serach Algorithm}
+	\item \href{https://en.wikipedia.org/wiki/Consistent_heuristic}{Consistent Heuristic}
+	\item \href{http://theory.stanford.edu/~amitp/GameProgramming/ImplementationNotes.html}{Game Programming Implementation Notes}
+	\item \href{https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm}{Real Datasets for Spatial Databases: Road Networks and Points of Interest}
+\end{itemize}
+
 
 
 \end{document}
