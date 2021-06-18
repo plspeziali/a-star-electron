@@ -10,7 +10,7 @@
 In caso non si abbia a disposizione un compilatore NodeJS nella propria macchina è disponibile una versione pre-compilata
 dal peso di circa 88 MB a questo link: https://mega.nz/file/YuYjGADB#NHcauPhIGdQv5f5BDIJhnn2HOrTdu5VA7vWjo50EKZc
 In caso si scarichi questa seconda versione è possibile avviare l'applicativo cliccando sull'eseguibile "a-star-electron.exe"
-e accedere al codice sorgente nella directory ".\resources\app\"
+e accedere al codice sorgente nella directory ".\resources\app\".
 Aprendo il terminale nella cartella principale e digitando "npm install" installerete le dipendenze necessarie all'avvio dell'applicativo
 e con "npm start" avvierete l'applicazione che, tramite il framework Electron, mostrerà l'interfaccia per poter operare sui grafi.
 In basso è presente una casella per inserire il nome dei due file con estensione ".cnode" e ".cedge" che conterranno, rispettivamente,
