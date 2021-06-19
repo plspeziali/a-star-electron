@@ -304,7 +304,7 @@ In primo luogo si svolge un'inizializzazione delle mappe, per cui occorre metter
 Successivamente passiamo alla creazione della coda di priorità per openSet: dato che abbiamo utilizzato un min-heap binario (per evitare sprechi di memoria e perchè l'operazione di union tra heap, l'unica di costo \(\Theta\)(n), non risulta utile per i fini dell'algoritmo) sappiamo che la complessità di insert, extractMin e decreaseKey in generale sono O(lgp).
 \\
 
-Nell'algoritmo implementato il primo ciclo while viene eseguito nel caso peggiore n volte, ad esempio nel caso in cui il grafo sia formato dall'unico cammino dallo start al goal, fino che non è stato svuotato completamente openSet, dunque extractMin() viene richiamato al più n volte, dunque è un O(nlgn).
+Nell'algoritmo implementato il primo ciclo while viene eseguito nel caso peggiore n volte, ad esempio nel caso in cui il grafo sia formato dall'unico cammino dallo start al goal, fino che non è stato svuotato completamente openSet, dunque extractMin() viene richiamato al più n volte, dunque ha complessità O(nlgn).
 Questo caso appena citato è il peggiore se considerassimo solo questo ciclo while in quanto, come vedremo, la presenza di un unico vicino (eccetto un eventuale predecessore) è un beneficio per la for interna.
 
 Infatti il for al suo interno sarà, sempre nel caso peggiore, dato che occorre visualizzare i vicini di ogni nodo di openSet selezionato tramite la scelta golosa, ripetuto per 2m volte\footnote[2]{Per le proprietà dei grafi non orientati} e ha quindi complessità O(m), dove m è il numero di archi del nostro grafo.
@@ -316,7 +316,7 @@ In generale, eccetto nel caso di cui parlavamo prima nel quale iteriamo la for u
 Notiamo quindi che il caso peggiore per la while esterna sembra essere il caso migliore per la for interna e viceversa.
 
 
-Perciò la complessità nel caso peggiore di A* sembra essere O(nlgn + m) ma nella pratica, poiché la caratteristica prima di A* è che gli effettivi nodi che vengono visitati sono molti meno rispetto a quelli totali, proprio grazie all'euristica, non ci sembra un modo adatto a rappresentarla.
+Perciò la complessità del caso che abbiamo analizzato sembra essere O(nlgn + m) ma nella pratica, poiché la caratteristica prima di A* è che gli effettivi nodi che vengono visitati sono molti meno rispetto a quelli totali, proprio grazie all'euristica, non ci sembra un modo adatto a rappresentarla.
 La funzione euristica infatti calcola la lontananza dei nodi dal goal scartando a priori quelli con f(n) troppo elevato.
 Inoltre è altamente improbabile che, in un'applicazione pratica in cui utilizziamo A*, si presenti un grafo formato da un unico percorso che dallo start porta al goal.
 
