@@ -13,7 +13,7 @@ const GraphCreator = require('./graphCreator');
 let [g, vertices] = GraphCreator.createGraph('./maps/cal.cnode','./maps/cal.cedge');
 
 var start = Date.now(); 
-let [routeNoPQ, N] = Astar.aStar(vertices[9444],vertices[9553],g);
+let [routeNoPQ, N] = Astar.aStar(vertices[10000],vertices[20000],g);
 var millis = Date.now() - start;
 var bf = Math.pow(N, 1/routeNoPQ.length);
 console.log(`milliseconds elapsed without PQ DC = ${millis}`);
@@ -29,7 +29,7 @@ console.log(`milliseconds elapsed with PQ = ${millis}`);
 console.log(routePQ);*/
 
 start = Date.now();
-var [routePQDC, NP] = AstarPQDC.aStar(vertices[9444],vertices[9553],g);
+var [routePQDC, NP] = AstarPQDC.aStar(vertices[10000],vertices[20000],g);
 millis = Date.now() - start;
 bf = Math.pow(NP, 1/routePQDC.length);
 console.log(`milliseconds elapsed with PQ DC = ${millis}`);

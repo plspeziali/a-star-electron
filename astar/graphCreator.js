@@ -34,7 +34,7 @@ module.exports = {
             let info = line.split(" "); // Prendo le informanzioni di ogni vertice
             let firstNode = parseInt(info[1]);
             let secondNode = parseInt(info[2]);
-            let cost = parseFloat(info[2]);
+            let cost = parseFloat(info[3]);
             g.addEdge(vertices[firstNode], vertices[secondNode],cost);
         }
 
