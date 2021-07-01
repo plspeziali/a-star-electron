@@ -7,19 +7,20 @@ module.exports = {
         var gScore = new Map();//
         var fScore = new Map();//
         var openSet = new PriorityQueue(fScore);
-        openSet.insert(start.id);//
+        openSet.insert(start.getId());//
         
-        for (let v of graph.adjList.keys()){//per ogni vertice che è nel grafo assegno una gScore Infinita
-            gScore[v.id] = Infinity;
-            fScore[v.id] = Infinity;
+        idsList = graph.getIds();
+        for (let v of idsList){//per ogni vertice che è nel grafo assegno una gScore Infinita
+            gScore[v.getId()] = Infinity;
+            fScore[v.getId()] = Infinity;
         }
 
-        gScore[start.id] = 0;
-        fScore[start.id] = goal.heuristic(start);
+        gScore[start.getId()] = 0;
+        fScore[start.getId()] = goal.heuristic(start);
         while(openSet.size() !== 0){
             current = openSet.extractMin();
             //console.log("extract min: "+current);
-            if(current == goal.id){
+            if(current == goal.getId()){
                 return module.exports.reconstructPath(cameFrom, current)
             } 
             //non ci serve più splice perchè c'è già extractmin
@@ -28,16 +29,16 @@ module.exports = {
                 neighbor = edge.vertex;
                 let tentative_gScore = gScore[current] + edge.cost;
                 //console.log("tentative_gScore: "+tentative_gScore);
-                //console.log("gscore: "+gScore[neighbor.id]);
-                if(tentative_gScore < gScore[neighbor.id]){
-                    cameFrom[neighbor.id] = current;
-                    gScore[neighbor.id] = tentative_gScore;
-                    fScore[neighbor.id] = gScore[neighbor.id] + goal.heuristic(neighbor);
-                    if(!openSet.includes(neighbor.id)){ //includes è una ricerca lineare O(n)
-                        openSet.insert(neighbor.id);
+                //console.log("gscore: "+gScore[neighbor.getId()]);
+                if(tentative_gScore < gScore[neighbor.getId()]){
+                    cameFrom[neighbor.getId()] = current;
+                    gScore[neighbor.getId()] = tentative_gScore;
+                    fScore[neighbor.getId()] = gScore[neighbor.getId()] + goal.heuristic(neighbor);
+                    if(!openSet.includes(neighbor.getId())){ //includes è una ricerca lineare O(n)
+                        openSet.insert(neighbor.getId());
                     }
                 }
-                //console.log("fscore: "+fScore[neighbor.id]);
+                //console.log("fscore: "+fScore[neighbor.getId()]);
             }
         }
         //console.log(cameFrom)

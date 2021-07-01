@@ -42,15 +42,15 @@ function createGraph(){
     var vertA = $("#vertA").val();
     var vertB = $("#vertB").val();
     if(typeof(vertA) != "undefined" && vertA != ""){
-      $("#latA").text(vertices[vertA].y);
-      $("#lonA").text(vertices[vertA].x);
-      var vertAMarker = new H.map.Marker({lat:vertices[vertA].y, lng:vertices[vertA].x});
+      $("#latA").text(vertices[vertA].getY());
+      $("#lonA").text(vertices[vertA].getX());
+      var vertAMarker = new H.map.Marker({lat:vertices[vertA].getY(), lng:vertices[vertA].getX()});
       map.addObject(vertAMarker);
     }
     if(typeof(vertB) != "undefined" && vertB != ""){
-      $("#latB").text(vertices[vertB].y);
-      $("#lonB").text(vertices[vertB].x);
-      var vertBMarker = new H.map.Marker({lat:vertices[vertB].y, lng:vertices[vertB].x});
+      $("#latB").text(vertices[vertB].getY());
+      $("#lonB").text(vertices[vertB].getX());
+      var vertBMarker = new H.map.Marker({lat:vertices[vertB].getY(), lng:vertices[vertB].getX()});
       map.addObject(vertBMarker);
     }
   });
@@ -64,7 +64,7 @@ function createGraph(){
   // Creazione della mappa tramite le funzioni di HERE
   map = new H.Map(document.getElementById('map'),
     defaultLayers.vector.normal.map,{
-    center: {lat:vertices[0].y, lng:vertices[0].x},
+    center: {lat:vertices[0].getY(), lng:vertices[0].getX()},
     zoom: 5,
     pixelRatio: window.devicePixelRatio || 1
   });
@@ -92,7 +92,7 @@ function calculateDistance(){
     // Creiamo la polilinea i cui punti sono i nodi del cammino e la aggiungiamo alla mappa
     var lineString = new H.geo.LineString();
     for(el of route){
-      lineString.pushPoint({lat:vertices[el].y, lng:vertices[el].x});
+      lineString.pushPoint({lat:vertices[el].getY(), lng:vertices[el].getX()});
     }
     map.addObject(new H.map.Polyline(
       lineString, { style: { lineWidth: 4 }}

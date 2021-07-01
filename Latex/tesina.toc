@@ -2,7 +2,8 @@
 \babel@toc {italian}{}
 \contentsline {chapter}{\numberline {1}Problema Affrontato}{2}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Algoritmi implementati e\\strutture dati realizzate}{4}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Analisi della complessità}{9}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Esempi di applicazione}{11}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Discussione dei dati\\sperimentali}{14}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Fonti}{16}{chapter.6}%
+\contentsline {section}{\numberline {2.1}Excursus - Correttezza di A*}{9}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Analisi della complessità}{10}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Esempi di applicazione}{12}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Discussione dei dati\\sperimentali}{15}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Fonti}{17}{chapter.6}%

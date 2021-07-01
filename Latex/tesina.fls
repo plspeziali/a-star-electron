@@ -822,8 +822,6 @@ INPUT d:\Progetti\a_starGUI\Latex\tesina.toc
 INPUT d:\Progetti\a_starGUI\Latex\tesina.toc
 INPUT d:\Progetti\a_starGUI\Latex\tesina.toc
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-OUTPUT d:\Progetti\a_starGUI\Latex\tesina.toc
-INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti12.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
@@ -832,9 +830,12 @@ INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi6.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
+OUTPUT d:\Progetti\a_starGUI\Latex\tesina.toc
+INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti12.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1200.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt10.tfm
 INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt12.tfm
+INPUT C:\Users\Paolo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
 INPUT d:\Progetti\a_starGUI\Latex\img\es1.png
 INPUT d:\Progetti\a_starGUI\Latex\img\es1.png
 INPUT d:\Progetti\a_starGUI\Latex\img\es1.png

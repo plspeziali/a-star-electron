@@ -12,23 +12,24 @@ module.exports = {
         
         var visited = 0;
         // All'inizio si inserisce solo il nodo di start
-        openSet.insert(start.id);
+        openSet.insert(start.getId());
         
         // Assegnamo ad ogni nodo gScore ed fScore infiniti
-        for (let v of graph.adjList.keys()){
-            gScore[v.id] = Infinity;
-            fScore[v.id] = Infinity;
+        idsList = graph.getIds();
+        for (let v of idsList){
+            gScore[v.getId()] = Infinity;
+            fScore[v.getId()] = Infinity;
         }
         
-        gScore[start.id] = 0;
-        fScore[start.id] = goal.heuristic(start);
+        gScore[start.getId()] = 0;
+        fScore[start.getId()] = goal.heuristic(start);
 
         // Continuiamo finché openSet sarà vuoto (implica fallimento)
         while(openSet.size() !== 0){
             // Prendiamo il nodo in openSet con minor valore di fScore
             current = openSet.extractMin();
             //Se siamo arrivati al nodo di goal richiamiamo il metodo reconstructPath
-            if(current == goal.id){
+            if(current == goal.getId()){
                 return module.exports.reconstructPath(cameFrom, current, visited)
             } 
             //Ricaviamo i vicini di current
@@ -40,16 +41,16 @@ module.exports = {
                 let neighbor = edge.vertex;
                 let tentative_gScore = gScore[current] + edge.cost;
                 // Se il nuovo gscore è minore di quello registrato precedentemente, aggiorniamo i valori relativi
-                if(tentative_gScore < gScore[neighbor.id]){
-                    cameFrom[neighbor.id] = current;
-                    gScore[neighbor.id] = tentative_gScore;
-                    fScore[neighbor.id] = gScore[neighbor.id] + goal.heuristic(neighbor);
+                if(tentative_gScore < gScore[neighbor.getId()]){
+                    cameFrom[neighbor.getId()] = current;
+                    gScore[neighbor.getId()] = tentative_gScore;
+                    fScore[neighbor.getId()] = gScore[neighbor.getId()] + goal.heuristic(neighbor);
                     // Controlliamo se il vicino in questione è già stato inserito in openSet
                     // indexOf è una ricerca lineare con complessità O(n)
-                    let index = openSet.indexOf(neighbor.id);
+                    let index = openSet.indexOf(neighbor.getId());
                     if(index == -1){
                         //Se il vicino non era già in openSet lo aggiungiamo
-                        openSet.insert(neighbor.id);
+                        openSet.insert(neighbor.getId());
                     } else {
                         // Se è gia presente, aggiorniamo la sua posizione nella coda
                         openSet.decreaseKey(index);

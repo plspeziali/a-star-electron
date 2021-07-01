@@ -190,6 +190,7 @@ Possiamo dire che A* è, per grafi molto ampi, sicuramente più efficace ed effi
 
 Dijkstra è sicuramente migliore per problemi di pathfinding in quanto viene trovato, se esiste, il percorso migliore sulla base dell'effettivo costo di quest'ultimo, a discapito della rapidità con cui questo viene elaborato.
 
+
 \chapter{Algoritmi implementati e\\strutture dati realizzate}
 
 L'algoritmo di A* vero e proprio è stato implementato come un modulo NodeJS, grazie al quale, se importato, è possibile richiamare il metodo \(astar(start, goal, graph)\), il quale prende come parametri due oggetti di classe Vertex (start e goal) e un oggetto di classe Graph (graph).
@@ -204,7 +205,7 @@ Un secondo caso di uscita dal ciclo è il fallimento nel trovare un cammino tra 
 \newpage
 Per implementare l'algoritmo sono state utilizzate principalmente quattro strutture dati:
 \begin{itemize}
-	\item \textbf{openSet}: l'insieme dei vertici che sono stati scoperti, e dei quali ancora occorre scoprire i vicini, e dei vertici già analizzati in precedenza per i quali si tenta però di trovare un percorso di costo minore (eventualità rara se si utilizza una funzione euristica consistente\footnote[1]{\(h(x) \leq d(x, y) + h(y)\) per ogni arco (x, y) del grafo dove d denota la lunghezza dell'arco} come nel nostro caso); 
+	\item \textbf{openSet}: l'insieme dei vertici che sono stati scoperti, e dei quali ancora occorre scoprire i vicini, e dei vertici già analizzati in precedenza per i quali si tenta però di trovare un percorso di costo minore (eventualità impossibile se si utilizza una funzione euristica consistente\footnote[1]{\(h(x) \leq d(x, y) + h(y)\) per ogni arco (x, y) del grafo dove d denota la lunghezza dell'arco} come nel nostro caso); 
 	\item \textbf{cameFrom}: l'insieme dei vertici candidati per essere inclusi nel percorso finale associati al loro predecessore nel cammino;
 	\item \textbf{gScore}: contiene tutti i vertici con associato il costo del percorso più economico conosciuto fino a quel momento per arrivare ad esso a partire dal vertice di start;
 	\item \textbf{fScore}:  contiene tutti i vertici con associato il minimo valore di f(n), ciò rappresenta il costo del percorso stimato più breve fino a quel momento per arrivare al goal passando attraverso il nodo n. 
@@ -295,13 +296,34 @@ Di seguito ecco il codice Javascript finale della while principale di A* utilizz
 	}
 \end{lstlisting}
 
+\newpage
+\section{Excursus - Correttezza di A*}
+Data la moltitudine di concetti ed elementi introdotti descrivendo l'implementazione dell'algoritmo, siamo ora in grado di poter dimostrare la correttezza di A*.
+Sappiamo che A* ci restituisce una soluzione ottima pertanto che:
+\begin{itemize}
+	\item il fattore di diramazione (il valore medio del grado dei nodi) è un valore finito;
+	\item i costi degli archi sono strettamente positivi;
+	\item la funzione euristica non sovrastima la distanza dei nodi dal goal e restituisce sempre stime non negative.
+\end{itemize}
+
+
+Dimostriamo quindi che, se A* restituisce un percorso \emph{p}, esso è il percorso più breve dallo start al goal:
+\begin{itemize}
+	\item Assumiamo, per assurdo, che un altro percorso \emph{p'} sia effettivamente il più breve verso il goal.
+	\item Consideriamo di trovarci nell'istante che precede l'estrazione di \emph{p} da openSet (e quindi della restituzione di \emph{p}), sicuramente alcuni nodi di \emph{p'} saranno anch'essi in openSet, chiamiamo questa parte percorso parziale \emph{p''}.
+	\item Poiché \emph{p} è stato scelto prima di \emph{p''}, \(f(p) \leq f(p'')\).
+	\item Dato che \emph{p} è stato esplorato fino al goal la sua \(h(p) = 0\), perciò\\ \(g(p) \leq g(p'') + h(p'')\).
+	\item In quanto \emph{h} è una funzione ammissibile, \(g(p'') + h(p'') \leq g(p')\) indipendentemente dai nodi che si sceglieranno per estendere \emph{p''} e formare \emph{p'}.
+	\item Possiamo infine affermare che avremo \(g(p) \leq g(p')\) per qualsiasi \emph{p'} e questo contraddice la nostra ipotesi iniziale.
+\end{itemize}
+
 \chapter{Analisi della complessità}
 
 La complessità dell'algoritmo A*, per un grafo di n vertici, dipende da molti fattori.
 In primo luogo si svolge un'inizializzazione delle mappe, per cui occorre mettere tutti i valori di gScore e fScore al valore Infinity: ciò ha complessità O(n).
 
 
-Successivamente passiamo alla creazione della coda di priorità per openSet: dato che abbiamo utilizzato un min-heap binario (per evitare sprechi di memoria e perchè l'operazione di union tra heap, l'unica di costo \(\Theta\)(n), non risulta utile per i fini dell'algoritmo) sappiamo che la complessità di insert, extractMin e decreaseKey in generale sono O(lgp).
+Successivamente passiamo alla creazione della coda di priorità per openSet: dato che abbiamo utilizzato un min-heap binario (per evitare sprechi di memoria e perchè l'operazione di union tra heap, l'unica di costo \(\Theta\)(n), non risulta utile per i fini dell'algoritmo) sappiamo che la complessità di insert, extractMin e decreaseKey in generale sono O(lgp) (con p numero di vertici in openSet).
 \\
 
 Nell'algoritmo implementato il primo ciclo while viene eseguito nel caso peggiore n volte, ad esempio nel caso in cui il grafo sia formato dall'unico cammino dallo start al goal, fino che non è stato svuotato completamente openSet, dunque extractMin() viene richiamato al più n volte, dunque ha complessità O(nlgn).
@@ -311,7 +333,7 @@ Infatti il for al suo interno sarà, sempre nel caso peggiore, dato che occorre 
 In questa for le istruzioni più complesse (indexOf, insert e decreaseKey) si trovano però dentro ad una if, la quale, per tutta la durata del programma, viene acceduta almeno d volte, dove d è la profondità del cammino ottimo.
 
 
-In generale, eccetto nel caso di cui parlavamo prima nel quale iteriamo la for una sola volta per il nostro unico vicino e lì troviamo complessità irrisorie (massimo O(2) per indexOf dato il nostro openSet di due elementi), d è sempre molto minore rispetto al numero medio dei vicini del nostro cammino e quindi al numero di volte che eseguiremo la for.
+In generale, eccetto nel caso di cui parlavamo prima nel quale iteriamo la for una sola volta per il nostro unico vicino e lì troviamo complessità irrisorie (massimo O(2) per indexOf dato il nostro openSet di due elementi), d è sempre molto minore rispetto al numero totale dei vicini del nostro cammino e quindi al numero di volte che eseguiremo la for.
 
 Notiamo quindi che il caso peggiore per la while esterna sembra essere il caso migliore per la for interna e viceversa.
 
@@ -362,13 +384,13 @@ Data la natura ormai fondamentale nella quotidianità della maggior parte delle 
 
 \chapter{Discussione dei dati\\sperimentali}
 
-Prese coppie di nodi nella mappa stradale della California con fattore di diramazione \(b \simeq N^\frac{1}{d}\), numero totale di vicini N e profondità del cammino ottimo d differenti, abbiamo ricavato la variazione del tempo di esecuzione:
+Prese coppie di nodi nella mappa stradale della California con fattore di diramazione \(b \simeq N^\frac{1}{d}\), numero totale di vicini N e profondità del cammino ottimo d differenti, abbiamo ricavato la variazione media del tempo di esecuzione (con 5 tentativi per percorso eseguiti):
 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{@{}llll@{}}
 		\toprule
-		\textbf{d} & \textbf{N} & \textbf{b} & \textbf{Tempo (ms)}       \\ \midrule
+		\textbf{d} & \textbf{N} & \textbf{b} & \textbf{Tempo medio (ms)}       \\ \midrule
 		568 & 42695 & 1.0189 & 9  \\
 		572 & 42803 & 1.0187 & 12 \\
 		576 & 42904 & 1.0186 & 10 \\
@@ -382,7 +404,7 @@ Abbiamo svolto poi lo stesso lavoro sulla mappa stradale di Perugia ed ottenuto 
 	\centering
 	\begin{tabular}{@{}llll@{}}
 		\toprule
-		\textbf{d} & \textbf{N} & \textbf{b} & \textbf{Tempo (ms)}       \\ \midrule
+		\textbf{d} & \textbf{N} & \textbf{b} & \textbf{Tempo medio (ms)}       \\ \midrule
 		65  & 6549  & 1.13 & 9  \\
 		69  & 6962  & 1.14 & 7  \\
 		79  & 9117  & 1.12 & 11 \\
@@ -395,13 +417,13 @@ In entrambe le tabelle si può notare come al crescere di d e di b il tempo di e
 
 Abbiamo constatato tramite coordinate geografiche reali che effettivamente l'utilizzo di una coda di priorità e dei suoi metodi extractMin(), minHeapify(),
 \\insert(), delete() e decreaseKey() il tempo di ricerca del percorso migliore è diminuito nell'ordine dei millisecondi.
-Riportiamo di seguito la differenza di tempo d'esecuzione tra A* senza e con code di priorità presi tre tragitti d'esempio (due tra nodi relativamente lontani e l'ultimo tra nodi relativamente vicini).
+Riportiamo di seguito la differenza di tempo d'esecuzione nmedio (sempre 5 tentativi per percorso) tra A* senza e con code di priorità presi tre tragitti d'esempio (due tra nodi relativamente lontani e l'ultimo tra nodi relativamente vicini).
 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{@{}llll@{}}
 		\toprule
-		\textbf{Nodo 1} & \textbf{Nodo 2} & \textbf{Tempo senza PQ (ms)} & \textbf{Tempo con PQ (ms)}\\ \midrule
+		\textbf{Nodo 1} & \textbf{Nodo 2} & \textbf{Tempo medio no PQ (ms)} & \textbf{Tempo medio con PQ (ms)}\\ \midrule
 		7999 & 2231  & 15  & 10  \\
 		10000 & 20000  & 25  & 21  \\
 		9444 & 9553  & 3  & 2  \\ \bottomrule
@@ -415,10 +437,11 @@ Riportiamo di seguito la differenza di tempo d'esecuzione tra A* senza e con cod
 	\item \href{http://ozark.hendrix.edu/~ferrer/courses/335/f11/lectures/effective-branching.html}{Effective Branching Factor}
 	\item \href{http://pages.di.unipi.it/micheli/DID/IIA-2016/part1/4e5-2016-infosearch-post-lez.pdf}{Ricerca Euristica UniPi}
 	\item \href{https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/}{Manhattan Distance}
-	\item \href{https://en.wikipedia.org/wiki/A*_search_algorithm}{A* Serach Algorithm}
+	\item \href{https://en.wikipedia.org/wiki/A*_search_algorithm}{A* Search Algorithm}
 	\item \href{https://en.wikipedia.org/wiki/Consistent_heuristic}{Consistent Heuristic}
 	\item \href{http://theory.stanford.edu/~amitp/GameProgramming/ImplementationNotes.html}{Game Programming Implementation Notes}
 	\item \href{https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm}{Real Datasets for Spatial Databases: Road Networks and Points of Interest}
+	\item \href{https://www.cs.ubc.ca/~kevinlb/teaching/cs322%20-%202008-9/Lectures/Search5.pdf}{Correttezza di A*}
 \end{itemize}
 
 
