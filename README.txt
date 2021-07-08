@@ -8,7 +8,7 @@
 ## Utilizzo dell'applicazione
 
 In caso non si abbia a disposizione un compilatore NodeJS nella propria macchina è disponibile una versione pre-compilata
-dal peso di circa 88 MB a questo link: https://mega.nz/file/YuYjGADB#NHcauPhIGdQv5f5BDIJhnn2HOrTdu5VA7vWjo50EKZc
+dal peso di circa 88 MB a questo link: https://drive.google.com/file/d/1e0wAV_Plm4KewliggYpoMvH9FRKUVhV6/view?usp=sharing
 In caso si scarichi questa seconda versione è possibile avviare l'applicativo cliccando sull'eseguibile "a-star-electron.exe"
 e accedere al codice sorgente nella directory ".\resources\app\".
 
@@ -22,7 +22,7 @@ Con le due caselle di input è possibile selezionare gli indici dei due nodi per
 Durante la scelta sarà possibile visualizzare nel paragrafo sottostante le coordinate dei nodi scelti. Una volta presi i due nodi,
 premendo il tasto Calcola sarà possibile visualizzare a schermo il percorso.
 La mappe disponibili di cui poter scrivere il nome per eseguire dei test sono "cal" [California], "perugia" [Perugia],
-"sanmariano" [San Mariano di Corciano (PG)] e "tuoro" [Tuoro sul Trasimeno (PG)].
+"sanmariano" [San Mariano di Corciano (PG)], "tuoro" [Tuoro sul Trasimeno (PG)] e "passignano" [Passignano sul Trasimeno (PG)].
 
  
 ## File d'interesse
